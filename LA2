@@ -1,0 +1,69 @@
+#function created to register the user
+def registerUser(): 
+    print("Enter your Information to Register.") 
+    userData = []  
+
+    # Collecting user information 
+    firstName = input("Enter First Name: ")
+    lastName = input("Enter Last Name: ")
+    course = input("Enter Course: ")
+    yearLevel = input("Enter Year Level: ")
+    section = input("Enter Section: ")
+    userName = input("Enter Username: ")
+    password = input("Enter Password: ")
+    pinCode = input("Enter Pin Code (max 8 characters): ")
+    
+    # Validating pin code length
+    if len(pinCode) > 8:
+        print("Pin Code must be a maximum of 8 characters.")  
+
+    # Storing user information in an array 
+    userInfo = {  
+        "first_name": firstName,
+        "last_name": lastName,
+        "course": course,
+        "year_level": yearLevel,
+        "section": section,
+        "username": userName,
+        "password": password,
+        "pin_code": pinCode
+    }
+    userData.append(userInfo)
+
+    print("Registration successful! Congratulations, {} {}!".format(firstName, lastName)) 
+
+def loginUser(userData):
+    while True: 
+        userName = input("Enter Username: ") 
+        password = input("Enter Password: ")  
+        
+        # Checking for valid username and password
+        for user in userData:  
+            if user['userName'] == userName and user['password'] == password:
+                pinCode = input("Enter Pin Code: ")   
+                if pinCode == user['pin_code']:
+                    print("Login successful! Here is your registered information:")   
+                    print(user) 
+                    return  
+                else:
+                    print("Incorrect Pin Code. Please try again.")
+                    break
+        else:
+            print("Invalid Username or Password. Please try again.")  
+def main(): 
+    userData = []
+    userData = registerUser()  
+    if userData:  
+        log_in = input("Do you want to log in? (yes/no): ").strip().lower()  
+        loginUser(userData)   
+        print("Exiting the program. Thank you!")
+
+if "_name_" == "_main_":  
+    main() 
+                    
+    
+    
+
+    
+    
+
